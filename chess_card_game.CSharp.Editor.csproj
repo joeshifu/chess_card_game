@@ -94,6 +94,9 @@
     <Reference Include="Debugger">
       <HintPath>Assets\Plugins\Debugger.dll</HintPath>
     </Reference>
+    <Reference Include="TexturePackerImporter">
+      <HintPath>Assets\Editor\TexturePackerImporter.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="chess_card_game.CSharp.csproj">
