@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2815321362
+CRC: 1867451970
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 881be3e84302d0af1dadc122b411a922
+    Hash: 3430236a72c5304b0ee78c90b65a61f2
   TypeTreeHash:
     serializedVersion: 2
     Hash: 1033bf7ddfd4c6d43e7a6382c0a0a61a
@@ -12,6 +12,6 @@ ClassTypes:
 - Class: 49
   Script: {instanceID: 0}
 Assets:
-- Assets/Lua/Cfg/CfgDataCenter.lua.bytes
 - Assets/Lua/Cfg/Template_Player.lua.bytes
+- Assets/Lua/Cfg/CfgDataCenter.lua.bytes
 Dependencies: []

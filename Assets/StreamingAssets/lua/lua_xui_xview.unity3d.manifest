@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 342543312
+CRC: 2883043719
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: ac245f41c60c095214f0b881eafe85aa
+    Hash: b99d2812e6c6c94b2f1abfa9881a3cc4
   TypeTreeHash:
     serializedVersion: 2
     Hash: 1033bf7ddfd4c6d43e7a6382c0a0a61a
@@ -12,10 +12,10 @@ ClassTypes:
 - Class: 49
   Script: {instanceID: 0}
 Assets:
-- Assets/Lua/XUI/XView/MessagePanelView.lua.bytes
-- Assets/Lua/XUI/XView/MainPanelView.lua.bytes
-- Assets/Lua/XUI/XView/NoticeView.lua.bytes
 - Assets/Lua/XUI/XView/PromptPanelView.lua.bytes
-- Assets/Lua/XUI/XView/LoginPanelView.lua.bytes
+- Assets/Lua/XUI/XView/MessagePanelView.lua.bytes
 - Assets/Lua/XUI/XView/TopBarView.lua.bytes
+- Assets/Lua/XUI/XView/LoginPanelView.lua.bytes
+- Assets/Lua/XUI/XView/NoticeView.lua.bytes
+- Assets/Lua/XUI/XView/MainPanelView.lua.bytes
 Dependencies: []
