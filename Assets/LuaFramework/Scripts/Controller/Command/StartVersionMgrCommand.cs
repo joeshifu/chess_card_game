@@ -81,7 +81,7 @@ public class StartVersionMgrCommand : ControllerCommand
 
         LuaMgr.DoFile("Logic/XGame");        //加载游戏
         LuaMgr.DoFile("Logic/Network");      //加载网络
-        NetworkMgr.OnInit();                     //初始化网络
+        NetworkMgr.Init();                     //初始化网络
         Util.CallMethod("XGame", "OnInitOK");    //初始化完成
         XPageMgr.Inst.ShowPage(true, "UI/Login/LoginPanel");
     }

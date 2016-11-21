@@ -5,7 +5,6 @@ using LuaFramework;
 
 public class SocketCommand : ControllerCommand
 {
-
     public override void Execute(IMessage message)
     {
         object data = message.Body;
@@ -13,8 +12,10 @@ public class SocketCommand : ControllerCommand
         KeyValuePair<int, ByteBuffer> buffer = (KeyValuePair<int, ByteBuffer>)data;
         switch (buffer.Key)
 		{
-			//把packet.header.header，packet.data 抛到lua里面去处理
-            default: Util.CallMethod("Network", "OnSocket", buffer.Key, buffer.Value); break;
+            default:
+                Debug.LogError("MsgId:"+buffer.Key + "MsgSize:"+buffer.Value.ToBytes().Length);
+                Util.CallMethod("Network", "OnSocket", buffer.Key, buffer.Value);
+                break;
         }
     }
 }

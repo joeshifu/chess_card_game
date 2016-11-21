@@ -1,11 +1,6 @@
-// ------------------------------------------------------------------------------
-// NsTcpClient tcp Client Library
-// 		by zengyi
-// ------------------------------------------------------------------------------
 using System;
 using System.Collections;
 using System.Collections.Generic;
-
 using System.Net.Sockets;
 using System.Net;
 using System.Threading;
@@ -48,7 +43,7 @@ namespace NsTcpClient
             GC.SuppressFinalize(this);
         }
 
-      
+
         //public
         public void Release()
         {
@@ -262,8 +257,8 @@ namespace NsTcpClient
                 AsyncCallback callBack = new AsyncCallback(OnConnectCallBack);
                 mSocket.BeginConnect(pConnect.szRemoteIp, pConnect.uRemotePort, callBack, mSocket);
 
-				//阻塞当前线程，直到当前的 WaitHandle 收到信号
-				//返回值:如果当前实例收到信号，则为 true；否则为 false。 
+                //阻塞当前线程，直到当前的 WaitHandle 收到信号
+                //返回值:如果当前实例收到信号，则为 true；否则为 false。 
                 if (mWaiting.WaitOne(pConnect.timeOut))
                 {
                     if (mSocket.Connected && mSocket.Poll(0, SelectMode.SelectWrite))
@@ -291,7 +286,7 @@ namespace NsTcpClient
             }
             else
             {
-				//阻塞式
+                //阻塞式
                 // yi zhi waiting...
                 try
                 {
@@ -311,7 +306,6 @@ namespace NsTcpClient
                     CloseSocket();
                     SetClientState(eClientState.eClient_STATE_CONNECT_FAIL);
 
-                    Console.WriteLine(e.Message);
                 }
             }
 
@@ -394,7 +388,6 @@ namespace NsTcpClient
                     CloseSocket();
                     SetClientState(eClientState.eClient_STATE_ABORT);
 
-                    Console.WriteLine(e.Message);
                 }
             }
         }
@@ -431,7 +424,6 @@ namespace NsTcpClient
                 CloseSocket();
                 SetClientState(eClientState.eClient_STATE_ABORT);
 
-                Console.WriteLine(e.Message);
             }
         }
 
@@ -494,7 +486,7 @@ namespace NsTcpClient
             mSocket = null;
         }
 
-        
+
     }
 
 }

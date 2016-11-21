@@ -8,24 +8,16 @@ namespace LuaFramework
 {
     public class NetworkManager : Manager
     {
-        //可能会有多个socket同时存在的情况，待完善
-        //private Dictionary<int,ClientSocket> m_socketClients = new  Dictionary<int, ClientSocket>();
-
-        private ClientSocket m_clientSocket = new ClientSocket(true);
-        private ICRC mCrc = new Crc32();
+        private ClientSocket m_clientSocket = new ClientSocket(false);
+        //private ICRC mCrc = new Crc32();
 
         void Awake()
-        {
-            Init();
-        }
-
-        private void Init()
         {
             m_clientSocket.AddStateEvent(OnSocketStateEvt);
             m_clientSocket.AddPacketDistributeEvent(OnPacketDistributeEvt);
         }
 
-        public void OnInit()
+        public void Init()
         {
             CallMethod("Start");
         }
@@ -79,24 +71,10 @@ namespace LuaFramework
         /// <param name="packet"></param>
         private void OnPacketDistributeEvt(GamePacket packet)
         {
-            //校验crc
-            //headcrc和datacrc都需要校验 TODO
-            //这里对datacrc校验一下
-            byte[] data = packet.data;
-            mCrc.Crc(data);
-            uint dataCrc = (uint)mCrc.Value;
-            if (packet.header.dataCrc32 == dataCrc)
-            {
-                ByteBuffer buffer = new ByteBuffer();
-                buffer.WriteBytes(packet.data);
-                KeyValuePair<int, ByteBuffer> _event = new KeyValuePair<int, ByteBuffer>(packet.header.header, buffer);
-                facade.SendMessageCommand(NotiConst.DISPATCH_MESSAGE, _event);
-            }
-            else
-            {
-                Debug.LogError("发送方，接收方 的数据不一致");
-                //抛弃还是重新请求？TODO
-            }
+            ByteBuffer buffer = new ByteBuffer();
+            buffer.WriteBytes(packet.data);
+            KeyValuePair<int, ByteBuffer> _event = new KeyValuePair<int, ByteBuffer>(packet.GetMsgId(), buffer);
+            facade.SendMessageCommand(NotiConst.DISPATCH_MESSAGE, _event);
         }
 
         /// <summary>
@@ -139,8 +117,8 @@ namespace LuaFramework
         {
             byte[] data = buffer.ToBytes();
             int protoId = int.Parse(str_protoId.Trim());
-            Debug.LogError(protoId+":" + data.Length);
-            m_clientSocket.Send(data, protoId);
+            Debug.LogError(protoId + ":" + data.Length);
+            m_clientSocket.Send_QiPai(protoId,data);
         }
 
         public void Unload()

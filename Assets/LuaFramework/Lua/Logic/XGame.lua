@@ -33,8 +33,8 @@ function XGame.InitViewPanels()
 end
 
 function XGame.ConnectServer()
-	AppConst.SocketPort = 10060;
-    AppConst.SocketAddress = "127.0.0.1";
+	AppConst.SocketPort = 16050;
+    AppConst.SocketAddress = "192.168.0.148";
     networkMgr:SendConnect();
     logWarn('ConnectServer--->>>'..'port:'..AppConst.SocketPort..'ip:'..AppConst.SocketAddress);
 end

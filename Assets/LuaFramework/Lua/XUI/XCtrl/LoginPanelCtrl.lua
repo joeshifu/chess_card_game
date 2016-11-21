@@ -23,7 +23,7 @@ end
 function LoginPanelCtrl.Start()
     logWarn('LoginPanelCtrl Start--->>>');
     local eventTriggerListener = EventTriggerListener.Get(LoginPanelView.loginBtn.gameObject);
-	eventTriggerListener:AddClick(LoginPanelView.loginBtn,this.OnClick);
+	eventTriggerListener:AddClick(LoginPanelView.loginBtn,this.OnLoginClick);
 end
 
 function LoginPanelCtrl.Rest()
@@ -36,6 +36,10 @@ end
 
 function LoginPanelCtrl.Destroy()
     logWarn('LoginPanelCtrl Destroy--->>>');
+end
+
+function LoginPanelCtrl.OnLoginClick(go)
+    logWarn(LoginPanelView.userName.text.."|"..LoginPanelView.passWord.text);
 end
 
 --单击事件--
