@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 920272572
+CRC: 596061853
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 4dc08e0408debc12eecb3bdf5dbc8f14
+    Hash: 42fb01717c155f6bb923c29c6a8f4e68
   TypeTreeHash:
     serializedVersion: 2
     Hash: 1033bf7ddfd4c6d43e7a6382c0a0a61a
@@ -12,8 +12,8 @@ ClassTypes:
 - Class: 49
   Script: {instanceID: 0}
 Assets:
-- Assets/Lua/Logic/XGame.lua.bytes
 - Assets/Lua/Logic/Network.lua.bytes
-- Assets/Lua/Logic/LuaClass.lua.bytes
+- Assets/Lua/Logic/XGame.lua.bytes
 - Assets/Lua/Logic/Game.lua.bytes
+- Assets/Lua/Logic/LuaClass.lua.bytes
 Dependencies: []

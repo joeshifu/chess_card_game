@@ -21,7 +21,8 @@ local gameObject;
 function Network.Start() 
     logWarn("Network.Start!!");
    
-    --Event.AddListener(Protocal.Message, this.OnMessage); 
+    Event.AddListener(Protocal.HHResponse, this.OnHHResponse); 
+    Event.AddListener(Protocal.LoginResponse, this.OnLoginResponse); 
 end
 
 --Socket消息分发--
@@ -32,6 +33,14 @@ end
 --当连接建立时--
 function Network.OnConnect() 
     logWarn("Game Server connected!!");
+
+    --测试登陆
+    this.TestSendLogon();
+
+    --开定时器，发心跳包
+    --this.SendHeart(); 
+
+    --coroutine.start(this.test_coroutine);
 end
 
 function Network.OnConnectFailed()
@@ -42,7 +51,85 @@ end
 function Network.OnDisconnect() 
     logError("OnDisconnect------->>>>");
 end
+------------------------------------------------
+function Network.TestSendLogon()
+    local path = Util.DataPath.."lua/3rd/pbc/gt_base.pb";
+    log('io.open--->>>'..path);
 
+    local addr = io.open(path, "rb")
+    local buffer = addr:read "*a"
+    addr:close()
+    protobuf.register(buffer)
+
+    local _LoginRequest = {
+        accounts = "joe2",
+        password = "4297f44b13955235245b2497399d7a93",
+        sessionid = "123456",
+        uid = "10000",
+        dwPlazaVersion = 101515267,
+        szMachineID = "b1a6afedf9cbc767ac8ff04fe997655a",
+        dwLogonType = 3,
+        dwClientVersion = 5003,
+        dwClientIP = "28551360",       
+    }
+    local code = protobuf.encode("gt_msg.LoginRequest", _LoginRequest)
+
+    local buffer = ByteBuffer.New();
+    buffer:WriteBuffer(code);
+    networkMgr:SendMessage(Protocal.LoginRequest,buffer);
+end
+
+function Network.OnLoginResponse(buffer)
+    local data = buffer:ToLuaByteBuffer();
+    local path = Util.DataPath.."lua/3rd/pbc/gt_base.pb";
+    local addr = io.open(path, "rb")
+    local buffer = addr:read "*a"
+    addr:close()
+    protobuf.register(buffer)
+    local decode = protobuf.decode("gt_msg.LoginResponse",data)
+    log('Network.OnLoginResponse--->>>'..decode.szDescribeString);
+end
+
+function Network.SendHeart()
+    local path = Util.DataPath.."lua/3rd/pbc/gt_base.pb";
+    log('io.open--->>>'..path);
+
+    local addr = io.open(path, "rb")
+    local buffer = addr:read "*a"
+    addr:close()
+    protobuf.register(buffer)
+
+    local hhrequest = {
+       
+    }
+    local code = protobuf.encode("gt_msg.HHRequest", hhrequest)
+
+    local buffer = ByteBuffer.New();
+    buffer:WriteBuffer(code);
+    networkMgr:SendMessage(Protocal.HHRequest,buffer);
+end
+
+function Network.OnHHResponse(buffer)
+    local data = buffer:ToLuaByteBuffer();
+    local path = Util.DataPath.."lua/3rd/pbc/gt_base.pb";
+    local addr = io.open(path, "rb")
+    local buffer = addr:read "*a"
+    addr:close()
+    protobuf.register(buffer)
+    local decode = protobuf.decode("gt_msg.HHResponse" , data)
+    print(decode.serverTimeNow)
+end
+
+--测试协同--
+function Network.test_coroutine()    
+    logWarn("1111");
+    coroutine.wait(1);  
+    logWarn("2222");
+    
+    local www = WWW("http://bbs.ulua.org/readme.txt");
+    coroutine.www(www);
+    logWarn(www.text);      
+end
 ------------------------------------------------
 --登录返回--
 function Network.OnMessage(buffer) 

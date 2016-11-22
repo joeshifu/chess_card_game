@@ -98,20 +98,17 @@ namespace NsTcpClient
         }
         #endregion
 
-        public ClientSocket(bool isUseTimer = false)
+        public ClientSocket()
         {
+            
+        }
 
-            if (isUseTimer)
-                mTimer = new System.Timers.Timer(1.0f);
-
-            Stop();
-            if (mTimer != null)
+        private bool canUpdate = false;
+        public void OnUpdate()
+        {
+            if (canUpdate)
             {
-                mTimer.Elapsed += new System.Timers.ElapsedEventHandler(delegate
-                {
-                    Execute_QiPai();
-                    Thread.Sleep(1);
-                });
+                Execute_QiPai();
             }
         }
 
@@ -123,7 +120,7 @@ namespace NsTcpClient
             if (ret)
             {
                 mConnecting = true;
-                Start();
+                canUpdate = true;
             }
             else
             {
@@ -136,7 +133,7 @@ namespace NsTcpClient
 
         public void DisConnect()
         {
-            Stop();
+            canUpdate = false;
             if (mPacketList != null)
                 mPacketList.Clear();
             if (mTcpClient != null)
@@ -148,25 +145,6 @@ namespace NsTcpClient
             mRecvSize = 0;
             mConnecting = false;
             mAbort = false;
-        }
-
-        private void Start()
-        {
-            if ((mTimer != null) && (!mTimer.Enabled))
-            {
-                mTimer.Enabled = true;
-                mTimer.Start();
-            }
-        }
-
-        private void Stop()
-        {
-            if ((mTimer != null) && mTimer.Enabled)
-            {
-                mTimer.Enabled = false;
-                mTimer.Stop();
-            }
-
         }
 
         private void ProcessPackets()
@@ -277,15 +255,12 @@ namespace NsTcpClient
             return data;
         }
 
-        // 声明为同步函数
-        [MethodImplAttribute(MethodImplOptions.Synchronized)]
         public bool Execute_QiPai()
         {
-            //string threadId = Thread.CurrentThread.ManagedThreadId.ToString ();
 
             if (mTcpClient == null)
             {
-                Stop();
+                canUpdate = false;
                 return false;
             }
 
@@ -363,6 +338,8 @@ namespace NsTcpClient
 
                             byte[] dataBytes = new byte[msgLength];
                             Buffer.BlockCopy(mRecvBuffer, i + headerSize, dataBytes, 0, msgLength);
+
+                            dataBytes = codeData(dataBytes);
 
                             GamePacket packet = new GamePacket();
                             packet.header = header;

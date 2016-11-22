@@ -153,7 +153,9 @@ public static class CustomSettings
         _GT(typeof(EPageType)),
         _GT(typeof(EPageMode)),
         _GT(typeof(EventTriggerListener)),
-        
+        _GT(typeof(GameDefine)),
+        _GT(typeof(GameMessages)),
+        _GT(typeof(GameUtils)),
     };
 
     public static List<Type> dynamicList = new List<Type>()

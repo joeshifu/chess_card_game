@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 27877263
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: e681b58666b7ce84c404114ae3a1fb57
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 1033bf7ddfd4c6d43e7a6382c0a0a61a
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Lua/Game/Global/GameGlobalDefine.lua.bytes
+Dependencies: []

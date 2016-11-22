@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 using NsTcpClient;
 using LuaInterface;
@@ -8,13 +9,19 @@ namespace LuaFramework
 {
     public class NetworkManager : Manager
     {
-        private ClientSocket m_clientSocket = new ClientSocket(false);
+        private ClientSocket m_clientSocket = new ClientSocket();
         //private ICRC mCrc = new Crc32();
 
         void Awake()
         {
             m_clientSocket.AddStateEvent(OnSocketStateEvt);
             m_clientSocket.AddPacketDistributeEvent(OnPacketDistributeEvt);
+        }
+
+        //每帧太快的话，可以减小频率
+        void Update()
+        {
+            m_clientSocket.OnUpdate();
         }
 
         public void Init()
@@ -85,6 +92,7 @@ namespace LuaFramework
             m_clientSocket.Connect(AppConst.SocketAddress, AppConst.SocketPort);
         }
 
+        /*
         /// <summary>
         /// 发送SOCKET消息
         /// </summary>
@@ -99,25 +107,23 @@ namespace LuaFramework
             //{
             //    Debug.LogError("buffer null");
             //}
-
-
-            byte[] data = buffer.ToBytes();
-            Debug.LogError("net work send!!" + data.Length);
-
+            //byte[] data = buffer.ToBytes();
+            //Debug.LogError("net work send!!" + data.Length);
             //ByteBuffer buf = new ByteBuffer(data);
             //ushort protoId = buf.ReadShort();
             //Debug.LogError("protoId:" + protoId);
             //byte[] data2 = buf.ToBytes();
             //Debug.LogError("datasize:" + data2.Length);
-
             // m_clientSocket.Send(data2, protoId);
         }
+        */
 
         public void SendMessage(string str_protoId, ByteBuffer buffer)
         {
             byte[] data = buffer.ToBytes();
             int protoId = int.Parse(str_protoId.Trim());
-            Debug.LogError(protoId + ":" + data.Length);
+            string str = String.Format("发送：ProtoId：{0}，数据内容字节数(不含包头)：{1}",protoId,data.Length);
+            Debug.Log(str);
             m_clientSocket.Send_QiPai(protoId,data);
         }
 
