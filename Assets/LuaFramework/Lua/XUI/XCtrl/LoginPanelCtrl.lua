@@ -1,16 +1,18 @@
 require "Common/define"
+require "Common/protocal"
+require "Common/functions"
+Event = require 'events'
+require "3rd/pbc/protobuf"
+
 local transform;
 local gameObject;
-
-local sproto = require "3rd/sproto/sproto"
-local core = require "sproto.core"
 
 LoginPanelCtrl = {};
 local this = LoginPanelCtrl;
 
 --构建函数--
 function LoginPanelCtrl.New()
-	logWarn("LoginPanelCtrl.New--->>");
+	--logWarn("LoginPanelCtrl.New--->>");
 	return this;
 end
 
@@ -21,153 +23,84 @@ function LoginPanelCtrl.Awake(xpage)
 end
 
 function LoginPanelCtrl.Start()
-    logWarn('LoginPanelCtrl Start--->>>');
-    local eventTriggerListener = EventTriggerListener.Get(LoginPanelView.loginBtn.gameObject);
-	eventTriggerListener:AddClick(LoginPanelView.loginBtn,this.OnLoginClick);
+    log('LoginPanelCtrl Start--->>>');
+    Event.AddListener(Protocal.LoginResponse, this.OnLoginResponse); 
+    EventTriggerListener.Get(LoginPanelView.loginBtn.gameObject):AddClick(LoginPanelView.loginBtn,this.OnLoginClick);
+    EventTriggerListener.Get(LoginPanelView.registerBtn.gameObject):AddClick(LoginPanelView.registerBtn,this.OnRegisterBtnClick);
+    EventTriggerListener.Get(LoginPanelView.weChatLoginBtn.gameObject):AddClick(LoginPanelView.weChatLoginBtn,this.OnWeChatLoginBtnClick);
 end
 
 function LoginPanelCtrl.Rest()
-    logWarn('LoginPanelCtrl Rest--->>>');
+    log('LoginPanelCtrl Rest--->>>');
 end
 
 function LoginPanelCtrl.Hide()
-    logWarn('LoginPanelCtrl Hide--->>>');
+    log('LoginPanelCtrl Hide--->>>');
 end
 
 function LoginPanelCtrl.Destroy()
-    logWarn('LoginPanelCtrl Destroy--->>>');
+    log('LoginPanelCtrl Destroy--->>>');
+    Event.RemoveListener(Protocal.LoginResponse);
+end
+---------------------------------------------------------------------------------------
+--登录按钮点击--
+function LoginPanelCtrl.OnLoginClick(go)   
+    this.SendLogin(LoginPanelView.userName.text,LoginPanelView.passWord.text);
 end
 
-function LoginPanelCtrl.OnLoginClick(go)
-    logWarn(LoginPanelView.userName.text.."|"..LoginPanelView.passWord.text);
+--注册按钮点击--
+function LoginPanelCtrl.OnRegisterBtnClick(go)
+    log("registerBtn clicked.............")
 end
 
---单击事件--
-function LoginPanelCtrl.OnClick(go)
-    logWarn(LoginPanelView.userName.text.."|"..LoginPanelView.passWord.text);
-    xpageMgr:ShowPage(true,"UI/UIPrefab/MainPanel");
-
-    if TestProtoType == ProtocalType.BINARY then
-        this.TestSendBinary();
-    end
-    if TestProtoType == ProtocalType.PB_LUA then
-        this.TestSendPblua();
-    end
-    if TestProtoType == ProtocalType.PBC then
-        this.TestSendPbc();
-    end
-    if TestProtoType == ProtocalType.SPROTO then
-        this.TestSendSproto();
-    end
-    logWarn("OnClick---->>>"..go.name);
+--微信登录按钮点击--
+function LoginPanelCtrl.OnWeChatLoginBtnClick(go)
+    log("weChatLoginBtn clicked................")
 end
-
---测试发送SPROTO--
-function LoginPanelCtrl.TestSendSproto()
-    local sp = sproto.parse [[
-    .Person {
-        name 0 : string
-        id 1 : integer
-        email 2 : string
-
-        .PhoneNumber {
-            number 0 : string
-            type 1 : integer
-        }
-
-        phone 3 : *PhoneNumber
-    }
-
-    .AddressBook {
-        person 0 : *Person(id)
-        others 1 : *Person
-    }
-    ]]
-
-    local ab = {
-        person = {
-            [10000] = {
-                name = "Alice",
-                id = 10000,
-                phone = {
-                    { number = "123456789" , type = 1 },
-                    { number = "87654321" , type = 2 },
-                }
-            },
-            [20000] = {
-                name = "Bob",
-                id = 20000,
-                phone = {
-                    { number = "01234567890" , type = 3 },
-                }
-            }
-        },
-        others = {
-            {
-                name = "Carol",
-                id = 30000,
-                phone = {
-                    { number = "9876543210" },
-                }
-            },
-        }
-    }
-    local code = sp:encode("AddressBook", ab)
-    ----------------------------------------------------------------
-    local buffer = ByteBuffer.New();
-    --buffer:WriteShort(Protocal.Message);
-    --buffer:WriteByte(ProtocalType.SPROTO);
-    buffer:WriteBuffer(code);
-    networkMgr:SendMessage(Protocal.Message,buffer);
-end
-
---测试发送PBC--
-function LoginPanelCtrl.TestSendPbc()
-    local path = Util.DataPath.."lua/3rd/pbc/addressbook.pb";
+----------------------------------------------------------------------------------------
+--发送登陆--
+function LoginPanelCtrl.SendLogin(_userName,_passWord)
+    log(_userName.."|".._passWord);
+    local path = Util.DataPath.."lua/3rd/pbc/gt_base.pb";
+    log('io.open--->>>'..path);
 
     local addr = io.open(path, "rb")
     local buffer = addr:read "*a"
     addr:close()
     protobuf.register(buffer)
 
-    local addressbook = {
-        name = "Alice",
-        id = 12345,
-        phone = {
-            { number = "1301234567" },
-            { number = "87654321", type = "WORK" },
-        }
+    local _LoginRequest = {
+        accounts = "joe2",
+        password = "4297f44b13955235245b2497399d7a93",
+        sessionid = "123456",
+        uid = "10000",
+        dwPlazaVersion = 101515267,
+        szMachineID = "b1a6afedf9cbc767ac8ff04fe997655a",
+        dwLogonType = 3,
+        dwClientVersion = 5003,
+        dwClientIP = "28551360",       
     }
-    local code = protobuf.encode("tutorial.Person", addressbook)
-    ----------------------------------------------------------------
+    local code = protobuf.encode("gt_msg.LoginRequest", _LoginRequest)
+
     local buffer = ByteBuffer.New();
-    buffer:WriteShort(Protocal.Message);
-    buffer:WriteByte(ProtocalType.PBC);
     buffer:WriteBuffer(code);
-    networkMgr:SendMessage(buffer);
+    networkMgr:SendMessage(Protocal.LoginRequest,buffer);
 end
 
---测试发送PBLUA--
-function LoginPanelCtrl.TestSendPblua()
-    local login = login_pb.LoginRequest();
-    login.id = 2000;
-    login.name = 'game';
-    login.email = 'jarjin@163.com';
-    local msg = login:SerializeToString();
-    ----------------------------------------------------------------
-    local buffer = ByteBuffer.New();
-    buffer:WriteShort(Protocal.Message);
-    buffer:WriteByte(ProtocalType.PB_LUA);
-    buffer:WriteBuffer(msg);
-    networkMgr:SendMessage(buffer);
+--登陆返回--
+function LoginPanelCtrl.OnLoginResponse(buffer)
+    local data = buffer:ToLuaByteBuffer();
+    local path = Util.DataPath.."lua/3rd/pbc/gt_base.pb";
+    local addr = io.open(path, "rb")
+    local buffer = addr:read "*a"
+    addr:close()
+    protobuf.register(buffer)
+    local decode = protobuf.decode("gt_msg.LoginResponse",data)
+    log('LoginPanelCtrl.OnLoginResponse--->>>'..decode.szDescribeString);
+
+    --    
+    --for _,v in ipairs(decode.phone) do
+      --  print("\t"..v.number, v.type)
+    --end
 end
 
---测试发送二进制--
-function LoginPanelCtrl.TestSendBinary()
-    local buffer = ByteBuffer.New();
-    buffer:WriteShort(Protocal.Message);
-    buffer:WriteByte(ProtocalType.BINARY);
-    buffer:WriteString("ffff我的ffffQ靈uuu");
-    buffer:WriteInt(200);
-    networkMgr:SendMessage(buffer);
-end

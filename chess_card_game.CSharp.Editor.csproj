@@ -91,11 +91,11 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>Library\UnityAssemblies\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
-    <Reference Include="Debugger">
-      <HintPath>Assets\Plugins\Debugger.dll</HintPath>
-    </Reference>
     <Reference Include="TexturePackerImporter">
       <HintPath>Assets\codeandweb.com\Editor\TexturePackerImporter.dll</HintPath>
+    </Reference>
+    <Reference Include="Debugger">
+      <HintPath>Assets\Plugins\Debugger.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
