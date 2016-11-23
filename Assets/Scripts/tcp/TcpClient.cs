@@ -225,8 +225,19 @@ namespace NsTcpClient
             if (pReq == null)
                 return;
             tReqConnect pConnect = (tReqConnect)pReq;
+            string ipv4 = pConnect.szRemoteIp;
+            int port = pConnect.uRemotePort;
 
-            mSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            //---------------use ipv6 to connect to gameserver-------------
+            String newServerIp = "";
+            AddressFamily newAddressFamily = AddressFamily.InterNetwork;
+            IPv6SupportMidleware.getIPType(ipv4, port.ToString(), out newServerIp, out newAddressFamily);
+            if (!string.IsNullOrEmpty(newServerIp))
+            {
+                ipv4 = newServerIp;
+            }
+            //-------------------------------------------------------------
+            mSocket = new Socket(newAddressFamily, SocketType.Stream, ProtocolType.Tcp);
             if (mSocket == null)
             {
                 // not used
@@ -255,7 +266,7 @@ namespace NsTcpClient
                 mWaiting.Reset();
 
                 AsyncCallback callBack = new AsyncCallback(OnConnectCallBack);
-                mSocket.BeginConnect(pConnect.szRemoteIp, pConnect.uRemotePort, callBack, mSocket);
+                mSocket.BeginConnect(ipv4, port, callBack, mSocket);
 
                 //阻塞当前线程，直到当前的 WaitHandle 收到信号
                 //返回值:如果当前实例收到信号，则为 true；否则为 false。 
@@ -290,7 +301,7 @@ namespace NsTcpClient
                 // yi zhi waiting...
                 try
                 {
-                    mSocket.Connect(pConnect.szRemoteIp, pConnect.uRemotePort);
+                    mSocket.Connect(ipv4, port);
                     if (mSocket.Connected && mSocket.Poll(0, SelectMode.SelectWrite))
                     {
                         SetClientState(eClientState.eClient_STATE_CONNECTED);

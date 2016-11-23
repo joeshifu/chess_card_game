@@ -190,6 +190,7 @@
     <Compile Include="Assets\Scripts\SceneMgr\maintown\MainScene.cs" />
     <Compile Include="Assets\Scripts\Tcp\ClientSocket.cs" />
     <Compile Include="Assets\Scripts\Tcp\Crc.cs" />
+    <Compile Include="Assets\Scripts\Tcp\IPv6SupportMidleware.cs" />
     <Compile Include="Assets\Scripts\Tcp\ITcpClient.cs" />
     <Compile Include="Assets\Scripts\Tcp\NetworkManager.cs" />
     <Compile Include="Assets\Scripts\Tcp\Req.cs" />
@@ -212,6 +213,7 @@
     <None Include="Assets\LuaFramework\ToLua\readme.txt" />
     <None Include="Assets\Resources\config.txt" />
     <None Include="Assets\StreamingAssets\files.txt" />
+    <None Include="Assets\codeandweb.com\Editor\SettingsTexturePackerImporter.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
