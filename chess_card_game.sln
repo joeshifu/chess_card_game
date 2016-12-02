@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2015
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "chess_card_game.CSharp", "chess_card_game.CSharp.csproj", "{D36953D7-87C5-315E-4854-B4FDE394AEE5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "chess_card_game", "chess_card_game.csproj", "{55E66D55-1349-CBB2-5C18-5FE028B3A343}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "chess_card_game.CSharp.Editor", "chess_card_game.CSharp.Editor.csproj", "{2D471C3E-79E5-1CD7-AB6C-F009B0E2AC56}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "chess_card_game.Editor", "chess_card_game.Editor.csproj", "{262C2DC9-9FF3-F295-DC61-318CBABB34EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,14 +11,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D36953D7-87C5-315E-4854-B4FDE394AEE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D36953D7-87C5-315E-4854-B4FDE394AEE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D36953D7-87C5-315E-4854-B4FDE394AEE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D36953D7-87C5-315E-4854-B4FDE394AEE5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2D471C3E-79E5-1CD7-AB6C-F009B0E2AC56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2D471C3E-79E5-1CD7-AB6C-F009B0E2AC56}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2D471C3E-79E5-1CD7-AB6C-F009B0E2AC56}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2D471C3E-79E5-1CD7-AB6C-F009B0E2AC56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55E66D55-1349-CBB2-5C18-5FE028B3A343}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55E66D55-1349-CBB2-5C18-5FE028B3A343}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55E66D55-1349-CBB2-5C18-5FE028B3A343}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55E66D55-1349-CBB2-5C18-5FE028B3A343}.Release|Any CPU.Build.0 = Release|Any CPU
+		{262C2DC9-9FF3-F295-DC61-318CBABB34EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{262C2DC9-9FF3-F295-DC61-318CBABB34EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{262C2DC9-9FF3-F295-DC61-318CBABB34EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{262C2DC9-9FF3-F295-DC61-318CBABB34EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
