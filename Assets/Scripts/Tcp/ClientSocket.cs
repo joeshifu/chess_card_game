@@ -202,46 +202,6 @@ namespace NsTcpClient
             Buffer.BlockCopy(_dataBytes, 0, finalBytes, headerSize, _dataBytes.Length);
             mTcpClient.Send(finalBytes);
 
-            /*
-            var lenght = mMagic.Length + 8 + 2 + 2 + _dataBytes.Length;
-
-            var result = new byte[lenght];
-
-            for (var i = 0; i < mMagic.Length; i++)
-            {
-
-                result[i] = mMagic[i];
-            }
-
-            byte[] twochar = new byte[2];
-
-            twochar[0] = (byte)(_msgId >> 8);
-            twochar[1] = (byte)(_msgId >> 0);
-
-            for (var i = 0; i < 2; i++)
-            {
-
-                result[i + mMagic.Length + 8] = twochar[i];
-            }
-
-            twochar[0] = (byte)(_dataBytes.Length >> 8);
-            twochar[1] = (byte)(_dataBytes.Length >> 0);
-
-            for (var i = 0; i < 2; i++)
-            {
-
-                result[i + mMagic.Length + 8 + 2] = twochar[i];
-            }
-
-            for (var i = 0; i < _dataBytes.Length; i++)
-            {
-
-                result[i + mMagic.Length + 8 + 2 + 2] = _dataBytes[i];
-            }
-
-            mTcpClient.Send(result);
-            */
-
         }
 
         private byte[] codeData(byte[] data)
@@ -387,10 +347,7 @@ namespace NsTcpClient
             }
             
             return true;
-            
         }
-
-
         #endregion
 
 

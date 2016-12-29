@@ -1,0 +1,395 @@
+fileFormatVersion: 2
+guid: 3da88f48e58b1d34781ef400dadf0af8
+timeCreated: 1482980156
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: bank_apply_0
+    21300002: bank_apply_1
+    21300004: bank_edit_textIcon
+    21300006: bank_line
+    21300008: bank_money_icon
+    21300010: bank_packet_icon
+    21300012: bank_presentBtn_0
+    21300014: bank_present_Icon
+    21300016: bank_recordBtn_0
+    21300018: bank_recordIcon
+    21300020: bank_return_0
+    21300022: bank_return_1
+    21300024: bank_saveTakeBtn_0
+    21300026: bank_saveTake_Icon
+    21300028: bank_save_1
+    21300030: bank_save_btn_0
+    21300032: bank_sure_0
+    21300034: bank_sure_1
+    21300036: bank_take_0
+    21300038: bank_take_1
+    21300040: bank_typeID_0
+    21300042: bank_typeID_1
+    21300044: bank_typeNick_0
+    21300046: bank_typeNick_1
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: bank_apply_0
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 298
+        width: 314
+        height: 105
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: bank_apply_1
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 405
+        width: 314
+        height: 105
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: bank_edit_textIcon
+      rect:
+        serializedVersion: 2
+        x: 1052
+        y: 10
+        width: 318
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: bank_line
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 12
+        width: 1048
+        height: 2
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: bank_money_icon
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 130
+        width: 79
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: bank_packet_icon
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 219
+        width: 79
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: bank_presentBtn_0
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 264
+        width: 250
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: bank_present_Icon
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 388
+        width: 250
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: bank_recordBtn_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 16
+        width: 250
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: bank_recordIcon
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 140
+        width: 250
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: bank_return_0
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 144
+        width: 77
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: bank_return_1
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 226
+        width: 77
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: bank_saveTakeBtn_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 264
+        width: 250
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: bank_saveTake_Icon
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 388
+        width: 250
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: bank_save_1
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 308
+        width: 276
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: bank_save_btn_0
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 410
+        width: 276
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: bank_sure_0
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 50
+        width: 314
+        height: 105
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: bank_sure_1
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 157
+        width: 314
+        height: 105
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: bank_take_0
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 94
+        width: 276
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: bank_take_1
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 196
+        width: 276
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: bank_typeID_0
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 234
+        width: 202
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: bank_typeID_1
+      rect:
+        serializedVersion: 2
+        x: 978
+        y: 70
+        width: 202
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: bank_typeNick_0
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 20
+        width: 202
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: bank_typeNick_1
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 20
+        width: 202
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: -1
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
