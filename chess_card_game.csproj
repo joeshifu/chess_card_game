@@ -72,6 +72,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AnimationUpdate.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\BaseType\LuaInterface_EventObjectWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\BaseType\LuaInterface_LuaConstructorWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\BaseType\LuaInterface_LuaFieldWrap.cs" />
