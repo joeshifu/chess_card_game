@@ -12,7 +12,7 @@ public enum VSyncCountSetting
 public class SetMaxFPS : MonoBehaviour
 {
     private VSyncCountSetting VSyncCount = VSyncCountSetting.DontSync;//用于快捷设置Unity Quanity设置中的垂直同步相关参数
-    private int MaxFPSValue = 60;//帧率的值,关闭垂直同步,可以自己设定帧数
+    private int MaxFPSValue = 30;//帧率的值,关闭垂直同步,可以自己设定帧数
     private bool MaxNoLimit = false;//不设限制，保持可达到的最高帧率
 
     void Awake()

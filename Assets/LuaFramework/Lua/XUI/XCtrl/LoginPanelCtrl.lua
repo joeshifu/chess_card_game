@@ -25,9 +25,12 @@ end
 function LoginPanelCtrl.Start()
     log('LoginPanelCtrl Start--->>>');
     Event.AddListener(Protocal.LoginResponse, this.OnLoginResponse); 
-    EventTriggerListener.Get(LoginPanelView.loginBtn.gameObject):AddClick(LoginPanelView.loginBtn,this.OnLoginClick);
+    EventTriggerListener.Get(LoginPanelView.accountLoginBtn.gameObject):AddClick(LoginPanelView.accountLoginBtn,this.OnAccountLoginBtnClick);
+    EventTriggerListener.Get(LoginPanelView.visitorLoginBtn.gameObject):AddClick(LoginPanelView.visitorLoginBtn,this.OnVisitorLoginBtnClick);
     EventTriggerListener.Get(LoginPanelView.registerBtn.gameObject):AddClick(LoginPanelView.registerBtn,this.OnRegisterBtnClick);
-    EventTriggerListener.Get(LoginPanelView.weChatLoginBtn.gameObject):AddClick(LoginPanelView.weChatLoginBtn,this.OnWeChatLoginBtnClick);
+    EventTriggerListener.Get(LoginPanelView.moreLoginWayBtn.gameObject):AddClick(LoginPanelView.moreLoginWayBtn,this.OnMoreLoginWayBtnClick);
+    EventTriggerListener.Get(LoginPanelView.wechatLoginBtn.gameObject):AddClick(LoginPanelView.wechatLoginBtn,this.OnWechatLoginBtnClick);
+    EventTriggerListener.Get(LoginPanelView.thirdLoginMaskBtn.gameObject):AddClick(LoginPanelView.thirdLoginMaskBtn,this.OnThirdLoginMaskBtnClick);
 end
 
 function LoginPanelCtrl.Rest()
@@ -43,19 +46,35 @@ function LoginPanelCtrl.Destroy()
     Event.RemoveListener(Protocal.LoginResponse);
 end
 ---------------------------------------------------------------------------------------
---登录按钮点击--
-function LoginPanelCtrl.OnLoginClick(go)   
-    this.SendLogin(LoginPanelView.userName.text,LoginPanelView.passWord.text);
+--账号登录按钮点击--
+function LoginPanelCtrl.OnAccountLoginBtnClick(go)   
+	 log("accountLoginBtn clicked.............")
+    --this.SendLogin(LoginPanelView.userName.text,LoginPanelView.passWord.text);
+end
+
+--游客登录按钮点击--
+function LoginPanelCtrl.OnVisitorLoginBtnClick(go)
+    log("visitorLoginBtn clicked.............")
 end
 
 --注册按钮点击--
-function LoginPanelCtrl.OnRegisterBtnClick(go)
-    log("registerBtn clicked.............")
+function LoginPanelCtrl.OnRegisterBtnClick( go )
+	 log("reginsterBtn clicked.............")
+end
+
+--更多登录方式按钮点击--
+function LoginPanelCtrl.OnMoreLoginWayBtnClick( go )
+	LoginPanelView.thirdLoginGo:SetActive(true)
 end
 
 --微信登录按钮点击--
-function LoginPanelCtrl.OnWeChatLoginBtnClick(go)
-    log("weChatLoginBtn clicked................")
+function LoginPanelCtrl.OnWechatLoginBtnClick( go )
+	log("wechatLoginBtn clicked.............")
+end
+
+--点击空白处关闭第三方登陆按钮--
+function LoginPanelCtrl.OnThirdLoginMaskBtnClick( go )
+	LoginPanelView.thirdLoginGo:SetActive(false)
 end
 ----------------------------------------------------------------------------------------
 --发送登陆--
