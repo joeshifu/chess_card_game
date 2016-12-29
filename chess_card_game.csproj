@@ -152,6 +152,7 @@
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\DelegateFactory.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\LuaBinder.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\LuaConst.cs" />
+    <Compile Include="Assets\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\Core\Common\LuaBehaviour.cs" />
     <Compile Include="Assets\Scripts\Core\Common\LuaLoader.cs" />
     <Compile Include="Assets\Scripts\Core\ConstDefine\AppConst.cs" />
