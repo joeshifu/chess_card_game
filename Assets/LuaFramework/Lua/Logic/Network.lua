@@ -32,7 +32,7 @@ end
 function Network.OnConnect() 
     logWarn("Game Server connected!!");
 
-    --开定时器，发心跳包
+    --开定时器，发心跳包 TODO
     this.SendHeart(); 
 
     --coroutine.start(this.test_coroutine);

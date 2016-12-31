@@ -1,5 +1,5 @@
 5.4.3f1:2.8.0.0
-Android
+StandaloneWindows
 F:/Unity5.4.3_install/Editor/Data/Managed/UnityEngine.dll
 F:/Unity5.4.3_install/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll
 F:/Unity5.4.3_install/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll

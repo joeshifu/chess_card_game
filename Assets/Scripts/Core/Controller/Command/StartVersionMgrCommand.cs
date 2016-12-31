@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using LuaFramework;
+using XGame.Event;
 
 public class StartVersionMgrCommand : ControllerCommand
 {
@@ -43,6 +44,7 @@ public class StartVersionMgrCommand : ControllerCommand
 	{
 		m_versionMgrGo = new GameObject();
 		m_versionMgrGo.name = "VersionMgr";
+        
 		VersionMgr m_versionMgr = m_versionMgrGo.AddComponent<VersionMgr>();
 		m_versionMgr.InitStart(VersionMgrFinished);
 	}
@@ -83,7 +85,10 @@ public class StartVersionMgrCommand : ControllerCommand
         LuaMgr.DoFile("Logic/Network");      //加载网络
         NetworkMgr.Init();                     //初始化网络
         Util.CallMethod("XGame", "OnInitOK");    //初始化完成
-        XPageMgr.Inst.ShowPage(true, "UI/Prefab/Login/LoginPanel");
+        XPageMgr.Inst.ShowPage(true, "UI/Prefab/LoginPanel");
+
+        EventDispatcher.TriggerEvent("test");
+        EventDispatcher.TriggerEvent<int>("testint",111);
     }
 
 }

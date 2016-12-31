@@ -7,6 +7,7 @@ using LuaFramework;
 using BindType = ToLuaMenu.BindType;
 using UnityEngine.UI;
 using System.Reflection;
+using XGame.Event;
 
 public static class CustomSettings
 {
@@ -156,6 +157,11 @@ public static class CustomSettings
         _GT(typeof(GameDefine)),
         _GT(typeof(GameMessages)),
         _GT(typeof(GameUtils)),
+
+
+        _GT(typeof(EventController)),
+        _GT(typeof(EventDispatcher)),
+        _GT(typeof(EventException)),
     };
 
     public static List<Type> dynamicList = new List<Type>()

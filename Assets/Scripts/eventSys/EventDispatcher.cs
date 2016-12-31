@@ -2,10 +2,91 @@
 {
     using System;
     using System.Collections.Generic;
+    using LuaInterface;
 
     public class EventDispatcher
     {
         private static EventController m_eventController = new EventController();
+        public static Dictionary<string, Delegate> TheRouter
+        {
+            get
+            {
+                return m_eventController.TheRouter;
+            }
+        }
+
+        #region Lua Support
+        private static Dictionary<string, LuaFunction> eventLuaFuncDic = new Dictionary<string, LuaFunction>();
+        public static void AddEventListener(string eventType, LuaFunction luafunc)
+        {
+            if (string.IsNullOrEmpty(eventType) || luafunc == null)
+                return;
+            eventLuaFuncDic.Add(eventType, luafunc);
+            m_eventController.AddEventListener(eventType, () =>
+            {
+                luafunc.Call();
+            });
+        }
+        //public static void AddEventListener<T>(string eventType, LuaFunction luafunc)
+        //{
+        //    if (string.IsNullOrEmpty(eventType) || luafunc == null)
+        //        return;
+        //    eventLuaFuncDic.Add(eventType, luafunc);
+        //    m_eventController.AddEventListener<T>(eventType, (T t) =>
+        //    {
+        //        luafunc.Call(t);
+        //    });
+        //}
+
+        //public static void AddEventListener<T, U>(string eventType, LuaFunction luafunc)
+        //{
+        //    if (string.IsNullOrEmpty(eventType) || luafunc == null)
+        //        return;
+        //    eventLuaFuncDic.Add(eventType, luafunc);
+        //    m_eventController.AddEventListener<T, U>(eventType, (T t, U u) =>
+        //     {
+        //         luafunc.Call(t, u);
+        //     });
+        //}
+
+        //public static void AddEventListener<T, U, V>(string eventType, LuaFunction luafunc)
+        //{
+        //    if (string.IsNullOrEmpty(eventType) || luafunc == null)
+        //        return;
+        //    eventLuaFuncDic.Add(eventType, luafunc);
+        //    m_eventController.AddEventListener<T, U, V>(eventType, (T t, U u, V v) =>
+        //     {
+        //         luafunc.Call(t, u, v);
+        //     });
+        //}
+
+        //public static void AddEventListener<T, U, V, W>(string eventType, LuaFunction luafunc)
+        //{
+        //    if (string.IsNullOrEmpty(eventType) || luafunc == null)
+        //        return;
+        //    eventLuaFuncDic.Add(eventType, luafunc);
+        //    m_eventController.AddEventListener<T, U, V, W>(eventType, (T t, U u, V v, W w) =>
+        //     {
+        //         luafunc.Call(t, u, v, w);
+        //     });
+        //}
+
+        public static void RemoveEventListener(string eventType)
+        {
+            if (string.IsNullOrEmpty(eventType))
+                return;
+            LuaFunction luafunc;
+            if (eventLuaFuncDic.TryGetValue(eventType, out luafunc))
+            {
+                luafunc.Dispose();
+                luafunc = null;
+                eventLuaFuncDic.Remove(eventType);
+            }
+        }
+
+        #endregion
+
+
 
         public static void AddEventListener<T>(string eventType, Action<T> handler)
         {
@@ -90,14 +171,6 @@
         public static void TriggerEvent<T, U, V, W>(string eventType, T arg1, U arg2, V arg3, W arg4)
         {
             m_eventController.TriggerEvent<T, U, V, W>(eventType, arg1, arg2, arg3, arg4);
-        }
-
-        public static Dictionary<string, Delegate> TheRouter
-        {
-            get
-            {
-                return m_eventController.TheRouter;
-            }
         }
     }
 }

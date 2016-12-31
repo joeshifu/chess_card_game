@@ -31,3 +31,5 @@ WWW = UnityEngine.WWW;
 GameObject = UnityEngine.GameObject;
 
 xpageMgr = XPageMgr.Inst
+
+EventDispatcher = XGame.Event.EventDispatcher;

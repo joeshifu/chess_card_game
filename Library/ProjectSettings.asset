@@ -6,12 +6,12 @@ PlayerSettings:
   serializedVersion: 8
   productGUID: 7a300422526be2141b3bc526ddfb121b
   AndroidProfiler: 0
-  defaultScreenOrientation: 0
+  defaultScreenOrientation: 2
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: LuaFramework_UGUI
+  productName: qipai
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenStyle: 0
@@ -96,7 +96,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleIdentifier: com.junfine.luaframework
+  bundleIdentifier: com.joeshifu.qipai
   bundleVersion: 1.0
   preloadedAssets: []
   metroEnableIndependentInputSource: 0

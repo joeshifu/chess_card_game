@@ -10,14 +10,14 @@ public enum EPageType
     Normal,
     PopUp,
     Fixed,
-//    Toppest,
+    //    Toppest,
 }
 
 public enum EPageMode
 {
     DoNothing,
-    HideOtherOnly, 
-    HideOtherAndNeedBack,       
+    HideOtherOnly,
+    HideOtherAndNeedBack,
 }
 
 public enum EPageState
@@ -36,8 +36,11 @@ public class XPageLoadBind
     /// <param name="xPage"></param>
     public static void Bind(XPage xPage)
     {
-        xPage.delegateSyncLoadUI = Resources.Load;
-        //xPage.delegateAsyncLoadUI = ResourcesMgr.Load;
+        //binding同步加载方法
+        xPage.delegateSyncLoadUI = Resources.Load; //开发过程可以用Resource.Load,  真机调试时: 打包用AssetBundle的非压缩格式,加载用LoadFromFile同步加载.考虑修改ResourceMgr  TODO
+
+        //binding异步加载方法,注:异步我们不用,因为要等回调!即时是AssetBundle,也在loading的时候,预加载到内存,在游戏中,就可以同步的实例化.
+        //xPage.delegateAsyncLoadUI =null;// AppFacade.Instance.GetManager<ResourceManager>(ManagerName.Resource).LoadPrefab;//ResourcesMgr.Load;
     }
 }
 
@@ -68,12 +71,7 @@ public class XPage
     {
         m_luaPageCtrl = m_pageName + "Ctrl";
         m_luaPageView = m_pageName + "View";
-        //Debug.LogError("call lua awake :(" + m_pageName + "Ctrl)");
-        Util.CallMethod(m_luaPageCtrl, "Awake",this);
-
-        //设置type和mode
-        //m_pageType = EPageType.PopUp;
-        //m_pageMode = EPageMode.HideOtherAndNeedBack;
+        Util.CallMethod(m_luaPageCtrl, "Awake", this);
     }
 
     public void Start()
@@ -81,7 +79,6 @@ public class XPage
         m_currState = EPageState.OPEN;
         m_pageInst.gameObject.SetActive(true);
         AnchorUIGameObject();
-        //Debug.LogError("call lua start :(" + m_pageName + "Ctrl)");
         Util.CallMethod(m_luaPageView, "Start", this.m_pageInst);
         Util.CallMethod(m_luaPageCtrl, "Start");
     }
@@ -90,7 +87,6 @@ public class XPage
     {
         m_currState = EPageState.OPEN;
         m_pageInst.gameObject.SetActive(true);
-        //Debug.LogError("call lua rest :(" + m_pageName + "Ctrl)");
         Util.CallMethod(m_luaPageCtrl, "Rest");
     }
 
@@ -98,7 +94,6 @@ public class XPage
     {
         m_currState = EPageState.HIDE;
         m_pageInst.gameObject.SetActive(false);
-        //Debug.LogError("call lua hide :(" + m_pageName + "Ctrl)");
         Util.CallMethod(m_luaPageCtrl, "Hide");
     }
 
@@ -106,10 +101,13 @@ public class XPage
     {
         m_currState = EPageState.CLOSE;
         GameObject.Destroy(m_pageInst);
-        //Debug.LogError("call lua destroy :(" + m_pageName + "Ctrl)");
         Util.CallMethod(m_luaPageCtrl, "Destroy");
     }
 
+    /// <summary>
+    /// 同步加载
+    /// </summary>
+    /// <param name="callback"></param>
     public void LoadSync(Action<GameObject> callback)
     {
         if (this.m_pageInst == null && string.IsNullOrEmpty(m_loadPath) == false)
@@ -144,6 +142,10 @@ public class XPage
         }
     }
 
+    /// <summary>
+    /// 异步加载
+    /// </summary>
+    /// <param name="callback"></param>
     public void LoadAsync(Action<GameObject> callback)
     {
         XPageRoot.Instance.StartCoroutine(AsyncShow(callback));
@@ -155,18 +157,25 @@ public class XPage
         {
             GameObject go = null;
             bool _loading = true;
-            delegateAsyncLoadUI(m_loadPath, (o) =>
+            if (delegateAsyncLoadUI != null)
             {
-                go = o != null ? GameObject.Instantiate(o) as GameObject : null;
+                delegateAsyncLoadUI(m_loadPath, (o) =>
+                {
+                    go = o != null ? GameObject.Instantiate(o) as GameObject : null;
 
-                _loading = false;
+                    _loading = false;
 
-                m_pageInst = go;
-                m_pageTrans = go.transform;
+                    m_pageInst = go;
+                    m_pageTrans = go.transform;
 
-                if (callback != null)
-                    callback(go);
-            });
+                    if (callback != null)
+                        callback(go);
+                });
+            }
+            else
+            {
+                Debug.LogError("[UI] delegateAsyncLoadUI = null");
+            }
 
             float _t0 = Time.realtimeSinceStartup;
             while (_loading)
@@ -214,7 +223,7 @@ public class XPage
         {
             ui.transform.SetParent(XPageRoot.Instance.normalRoot);
         }
-        else if(type == EPageType.PopUp)
+        else if (type == EPageType.PopUp)
         {
             ui.transform.SetParent(XPageRoot.Instance.popupRoot);
         }

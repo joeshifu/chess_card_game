@@ -20,6 +20,8 @@ function LoginPanelCtrl.Awake(xpage)
     --logWarn('LoginPanelCtrl Awake--->>>'..'xpage name:'..xpage.m_pageName);
     xpage.m_pageType = EPageType.Normal;
     xpage.m_pageMode = EPageMode.DoNothing;
+    EventDispatcher.AddEventListener("test", this.OnEventTest);
+    --EventDispatcher.AddEventListener<int>("testint", this.OnEventTestInt);
 end
 
 function LoginPanelCtrl.Start()
@@ -44,6 +46,9 @@ end
 function LoginPanelCtrl.Destroy()
     log('LoginPanelCtrl Destroy--->>>');
     Event.RemoveListener(Protocal.LoginResponse);
+
+    EventTriggerListener.Get(LoginPanelView.accountLoginBtn.gameObject):RemoveClick(LoginPanelView.accountLoginBtn.gameObject);
+    --TODO
 end
 ---------------------------------------------------------------------------------------
 --账号登录按钮点击--
@@ -76,6 +81,15 @@ end
 function LoginPanelCtrl.OnThirdLoginMaskBtnClick( go )
 	LoginPanelView.thirdLoginGo:SetActive(false)
 end
+
+function LoginPanelCtrl.OnEventTest(  )
+	
+	logError("OnEventTest........................................")
+end
+
+--function LoginPanelCtrl.OnEventTestInt( i )
+	--logError("OnEventTestInt......"..i)
+--end
 ----------------------------------------------------------------------------------------
 --发送登陆--
 function LoginPanelCtrl.SendLogin(_userName,_passWord)

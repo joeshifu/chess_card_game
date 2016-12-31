@@ -15,8 +15,7 @@ namespace LuaFramework
         public const bool ExampleMode = false;                       //例子模式 
 
         /// <summary>
-        /// 如果开启更新模式，前提必须启动框架自带服务器端。
-        /// 否则就需要自己将StreamingAssets里面的所有内容
+        /// 如果开启更新模式，就需要自己将StreamingAssets里面的所有内容
         /// 复制到自己的Webserver上面，并修改下面的WebUrl。
         /// </summary>
         public const bool UpdateMode = false;                       //更新模式-默认关闭 
