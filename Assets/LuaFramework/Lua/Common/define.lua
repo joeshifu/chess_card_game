@@ -4,7 +4,9 @@ XPanelNames ={
 	"TopBar",
 	"PromptPanel",
 	"MainPanel",
-	"LoginPanel"
+	"LoginPanel",
+	"LoadingPanel",
+	"RegisterAccountPanel"
 }
 
 --协议类型--

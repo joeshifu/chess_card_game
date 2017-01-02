@@ -83,6 +83,19 @@ namespace LuaFramework
             });
   
         }
+
+        public GameObject CreatePanelFromResources(string resPath)
+        {
+            string panelName = resPath.Substring(resPath.LastIndexOf("/") + 1);
+            GameObject panelInst = GameObject.Instantiate(Resources.Load(resPath) as GameObject);
+            panelInst.name = panelName;
+            panelInst.layer = LayerMask.NameToLayer("UI");
+            panelInst.transform.SetParent(Parent); //default
+            panelInst.transform.localScale = Vector3.one;
+            panelInst.transform.localPosition = Vector3.zero;
+            return panelInst;
+        }
+
 #else
         /// <summary>
         /// 创建面板，请求资源管理器

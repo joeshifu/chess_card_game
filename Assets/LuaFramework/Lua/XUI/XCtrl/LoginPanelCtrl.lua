@@ -12,14 +12,15 @@ local this = LoginPanelCtrl;
 
 --构建函数--
 function LoginPanelCtrl.New()
-	--logWarn("LoginPanelCtrl.New--->>");
 	return this;
 end
 
 function LoginPanelCtrl.Awake(xpage)
     --logWarn('LoginPanelCtrl Awake--->>>'..'xpage name:'..xpage.m_pageName);
-    xpage.m_pageType = EPageType.Normal;
-    xpage.m_pageMode = EPageMode.DoNothing;
+    --xpage.m_pageType = EPageType.Normal;
+    --xpage.m_pageMode = EPageMode.DoNothing;
+    xpage.m_pageType = EPageType.PopUp;
+    xpage.m_pageMode = EPageMode.HideOtherAndNeedBack
     EventDispatcher.AddEventListener("test", this.OnEventTest);
     --EventDispatcher.AddEventListener<int>("testint", this.OnEventTestInt);
 end
@@ -37,6 +38,8 @@ end
 
 function LoginPanelCtrl.Rest()
     log('LoginPanelCtrl Rest--->>>');
+    LoginPanelView.userName.text = "";
+    LoginPanelView.passWord.text = "";
 end
 
 function LoginPanelCtrl.Hide()
@@ -46,8 +49,12 @@ end
 function LoginPanelCtrl.Destroy()
     log('LoginPanelCtrl Destroy--->>>');
     Event.RemoveListener(Protocal.LoginResponse);
-
     EventTriggerListener.Get(LoginPanelView.accountLoginBtn.gameObject):RemoveClick(LoginPanelView.accountLoginBtn.gameObject);
+    EventTriggerListener.Get(LoginPanelView.visitorLoginBtn.gameObject):RemoveClick(LoginPanelView.visitorLoginBtn,this.OnVisitorLoginBtnClick);
+    EventTriggerListener.Get(LoginPanelView.registerBtn.gameObject):RemoveClick(LoginPanelView.registerBtn,this.OnRegisterBtnClick);
+    EventTriggerListener.Get(LoginPanelView.moreLoginWayBtn.gameObject):RemoveClick(LoginPanelView.moreLoginWayBtn,this.OnMoreLoginWayBtnClick);
+    EventTriggerListener.Get(LoginPanelView.wechatLoginBtn.gameObject):RemoveClick(LoginPanelView.wechatLoginBtn,this.OnWechatLoginBtnClick);
+    EventTriggerListener.Get(LoginPanelView.thirdLoginMaskBtn.gameObject):RemoveClick(LoginPanelView.thirdLoginMaskBtn,this.OnThirdLoginMaskBtnClick);
     --TODO
 end
 ---------------------------------------------------------------------------------------
@@ -55,6 +62,9 @@ end
 function LoginPanelCtrl.OnAccountLoginBtnClick(go)   
 	 log("accountLoginBtn clicked.............")
     --this.SendLogin(LoginPanelView.userName.text,LoginPanelView.passWord.text);
+    log("account:"..LoginPanelView.userName.text.."_passWord:"..LoginPanelView.passWord.text);
+
+    --test  go to mainscene
 end
 
 --游客登录按钮点击--
@@ -64,7 +74,8 @@ end
 
 --注册按钮点击--
 function LoginPanelCtrl.OnRegisterBtnClick( go )
-	 log("reginsterBtn clicked.............")
+	 --log("reginsterBtn clicked.............")
+    xpageMgr:ShowPage(true,"UI/Prefab/RegisterAccountPanel");
 end
 
 --更多登录方式按钮点击--
@@ -84,11 +95,11 @@ end
 
 function LoginPanelCtrl.OnEventTest(  )
 	
-	logError("OnEventTest........................................")
+	log("OnEventTest........................................")
 end
 
 --function LoginPanelCtrl.OnEventTestInt( i )
-	--logError("OnEventTestInt......"..i)
+	--log("OnEventTestInt......"..i)
 --end
 ----------------------------------------------------------------------------------------
 --发送登陆--

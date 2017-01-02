@@ -86,6 +86,7 @@
   <ItemGroup>
     <Compile Include="Assets\AnimationUpdate.cs" />
     <Compile Include="Assets\ConsoleOut.cs" />
+    <Compile Include="Assets\DownloadPanelScript.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\BaseType\LuaInterface_EventObjectWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\BaseType\LuaInterface_LuaConstructorWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\BaseType\LuaInterface_LuaFieldWrap.cs" />
@@ -166,7 +167,6 @@
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\DelegateFactory.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\LuaBinder.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\LuaConst.cs" />
-    <Compile Include="Assets\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\Core\Common\LuaBehaviour.cs" />
     <Compile Include="Assets\Scripts\Core\Common\LuaLoader.cs" />
     <Compile Include="Assets\Scripts\Core\ConstDefine\AppConst.cs" />
@@ -229,7 +229,6 @@
     <Compile Include="Assets\Scripts\XPage\XPage.cs" />
     <Compile Include="Assets\Scripts\XPage\XPageMgr.cs" />
     <Compile Include="Assets\Scripts\XPage\XPageRoot.cs" />
-    <Compile Include="Assets\TestLoadingPanel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\DOTween\DOTween.XML" />

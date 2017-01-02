@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System;
 using System.IO;
 using LuaFramework;
+using XGame.Event;
 
 public class ResVersion
 {
@@ -77,10 +78,14 @@ public class VersionMgr : Manager
         }
     }
 
+    //test
     IEnumerator Delay(float delayTime)
     {
-        yield return new WaitForSeconds(delayTime);
-
+        yield return new WaitForSeconds(delayTime / 2);
+        EventDispatcher.TriggerEvent<float>("DownloadProgress",0.5f);
+        yield return new WaitForSeconds(delayTime / 2);
+        EventDispatcher.TriggerEvent<float>("DownloadProgress", 1f);
+        yield return new WaitForSeconds(1f);
         if (this.m_versionMgrCallback != null)
             this.m_versionMgrCallback();
     }
@@ -95,7 +100,7 @@ public class VersionMgr : Manager
         else
         {
             //test
-            StartCoroutine(Delay(1f));
+            StartCoroutine(Delay(2f));
         }
     }
     /// <summary>
@@ -231,7 +236,7 @@ public class VersionMgr : Manager
         _tempTask.Url = this.m_remoteUrl + m_versionTxtName;
 
         DownloadMgr.Inst.InitDownloadCallBacks(this.ParseRemoteVersionData, this.OneTaskProgressChanged, null);
-		DownloadMgr.Inst.AsynDownLoadText(_tempTask);
+        DownloadMgr.Inst.AsynDownLoadText(_tempTask);
     }
 
     private void ParseRemoteVersionData(string remoteData)
@@ -435,7 +440,7 @@ public class VersionMgr : Manager
         this.m_remoteVersionData = null;
 
         //释放downloadmgr
-		DownloadMgr.Inst.Destroy();
+        DownloadMgr.Inst.Destroy();
 
         if (m_versionMgrCallback != null)
             this.m_versionMgrCallback();
@@ -460,7 +465,7 @@ public class VersionMgr : Manager
         }
 
         DownloadMgr.Inst.InitDownloadCallBacks(null, this.OneTaskProgressChanged, this.OneTaskFinished);
-		DownloadMgr.Inst.AsynDownLoadFile(firstTask);
+        DownloadMgr.Inst.AsynDownLoadFile(firstTask);
     }
 
     private void PopDownloadTask()
@@ -487,6 +492,6 @@ public class VersionMgr : Manager
     void OnDestroy()
     {
         Debug.Log("~VersionManager was destroy");
-    } 
+    }
 }
 
