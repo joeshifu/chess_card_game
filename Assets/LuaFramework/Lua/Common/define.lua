@@ -1,12 +1,8 @@
 XPanelNames ={
-	"MessagePanel",
-	"Notice",
-	"TopBar",
-	"PromptPanel",
-	"MainPanel",
 	"LoginPanel",
 	"LoadingPanel",
-	"RegisterAccountPanel"
+	"RegisterAccountPanel",
+	"GameHallPanel"
 }
 
 --协议类型--

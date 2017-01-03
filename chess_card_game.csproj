@@ -84,9 +84,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AnimationUpdate.cs" />
-    <Compile Include="Assets\ConsoleOut.cs" />
-    <Compile Include="Assets\DownloadPanelScript.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\BaseType\LuaInterface_EventObjectWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\BaseType\LuaInterface_LuaConstructorWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\BaseType\LuaInterface_LuaFieldWrap.cs" />
@@ -229,6 +226,9 @@
     <Compile Include="Assets\Scripts\XPage\XPage.cs" />
     <Compile Include="Assets\Scripts\XPage\XPageMgr.cs" />
     <Compile Include="Assets\Scripts\XPage\XPageRoot.cs" />
+    <Compile Include="Assets\Scripts\my\AnimationUpdate.cs" />
+    <Compile Include="Assets\Scripts\my\ConsoleOut.cs" />
+    <Compile Include="Assets\Scripts\my\DownloadPanelScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\DOTween\DOTween.XML" />

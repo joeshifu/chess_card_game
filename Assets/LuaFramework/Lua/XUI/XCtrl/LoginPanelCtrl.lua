@@ -70,6 +70,7 @@ end
 --游客登录按钮点击--
 function LoginPanelCtrl.OnVisitorLoginBtnClick(go)
     log("visitorLoginBtn clicked.............")
+    xpageMgr:ShowPage(true,"UI/Prefab/GameHallPanel");
 end
 
 --注册按钮点击--
